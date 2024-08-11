@@ -15,5 +15,9 @@ public interface CouponService {
 
     public CouponDto getCouponById(Long id);
 
+    public void deleteCouponById(Long id);
+
+    public void updateCoupon(CouponDto couponDto,Long id);
+
     //public OrderDto consumeCoupon(long userId,OrderDto orderDto,String code);
 }

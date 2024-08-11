@@ -73,6 +73,26 @@ public class CouponServiceImpl implements CouponService {
         return couponDto;
     }
 
+    @Override
+    public void deleteCouponById(Long id) {
+        Optional<CouponEntity> optionalCoupon= couponRepository.findById(id);
+        if (!optionalCoupon.isPresent()){
+            throw new NotFoundException("Coupon with id " + id + " does not exist");
+        }
+        couponRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateCoupon(CouponDto couponDto, Long id) {
+        Optional<CouponEntity> optionalCoupon= couponRepository.findById(id);
+        if (!optionalCoupon.isPresent()){
+            throw new NotFoundException("Coupon with id " + id + " does not exist");
+        }
+        CouponEntity couponEntity = optionalCoupon.get();
+        couponeDtoToEntityMapper(couponDto, couponEntity);
+        couponRepository.save(couponEntity);
+    }
+
 
     private void couponeDtoToEntityMapper(CouponDto coupondto, CouponEntity couponEntity) {
         couponEntity.setCode(coupondto.getCode());

@@ -1,8 +1,10 @@
 package com.example.coupon_api.repository.entity;
 
 import jakarta.persistence.*;
+import jdk.jfr.Timestamp;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -14,18 +16,18 @@ public class CouponEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    Long id;
+    private Long id;
     @Column(name = "code")
-    String code;
+    private String code;
     @Column(name = "quantity")
-    int quantity;
+    private int quantity;
     @Column(name = "expiration_date")
-    @Temporal(TemporalType.DATE)
-    Date expirationDate;
+    @Timestamp()
+    private LocalDate expirationDate;
     @Column(name = "value")
-    double value;
+    private double value;
     @Column(name = "fixed")
-    boolean fixed;
+    private boolean fixed;
 
 
     public void decrementQuantity() {

@@ -1,13 +1,16 @@
 package com.example.coupon_api.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
+import jdk.jfr.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -23,8 +26,8 @@ public class CouponDto {
     private int numberOfUses;
 
     @NotBlank(message = "Expiration Date is mandatory")
-    @Temporal(TemporalType.DATE)
-    private Date expirationDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate expirationDate;
 
     @Positive(message = "Value must be positive")
     private double value;

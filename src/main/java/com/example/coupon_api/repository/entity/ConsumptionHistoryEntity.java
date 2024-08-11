@@ -17,18 +17,17 @@ public class ConsumptionHistoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    Long id;
-
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "coupon_id")
-    CouponEntity coupon;
+    private CouponEntity coupon;
 
     @Column(name = "order_id")
-    Long orderId;
+    private Long orderId;
     @Column(name = "user_email")
-    String email;
+    private String email;
     @Column(name = "consumption_date")
-    Date consumptionDate;
+    private Date consumptionDate;
 
 }

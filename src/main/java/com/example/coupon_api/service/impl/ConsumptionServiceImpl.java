@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -99,7 +100,7 @@ public class ConsumptionServiceImpl implements ConsumptionService {
         if (couponEntity.getQuantity() <= 0) {
             throw new NotValidException("Coupon is not available");
         }
-        if (couponEntity.getExpirationDate().before(new Date())) {
+        if (couponEntity.getExpirationDate().isBefore(LocalDate.now())) {
             throw new NotValidException("Coupon is expired");
         }
         Optional<ConsumptionHistoryEntity> optionalConsumption = consumptionRepository

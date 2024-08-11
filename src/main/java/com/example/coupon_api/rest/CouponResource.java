@@ -39,5 +39,17 @@ public class CouponResource {
         return ResponseEntity.ok(couponDto);
     }
 
+    @PutMapping("update/{id}")
+    public ResponseEntity<Void> updateCoupon(@PathVariable Long id, @RequestBody CouponDto couponDto) {
+        couponService.updateCoupon(couponDto,id);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Void> deleteCoupon(@PathVariable Long id) {
+        couponService.deleteCouponById(id);
+        return ResponseEntity.ok().build();
+    }
+
 
 }
