@@ -27,14 +27,11 @@ public class CouponServiceImpl implements CouponService {
                 throw new DuplicateException("Coupon with code " + coupondto.getCode() + " already exists");
             }
             CouponEntity couponEntity = new CouponEntity();
-            couponeDtoToEntityMapper(coupondto, couponEntity);
+            couponDtoToEntityMapper(coupondto, couponEntity);
             couponRepository.save(couponEntity);
 
         }
     }
-
-
-
 
     @Override
     public List<CouponDto> getAllCoupons() {
@@ -89,12 +86,12 @@ public class CouponServiceImpl implements CouponService {
             throw new NotFoundException("Coupon with id " + id + " does not exist");
         }
         CouponEntity couponEntity = optionalCoupon.get();
-        couponeDtoToEntityMapper(couponDto, couponEntity);
+        couponDtoToEntityMapper(couponDto, couponEntity);
         couponRepository.save(couponEntity);
     }
 
 
-    private void couponeDtoToEntityMapper(CouponDto coupondto, CouponEntity couponEntity) {
+    private void couponDtoToEntityMapper(CouponDto coupondto, CouponEntity couponEntity) {
         couponEntity.setCode(coupondto.getCode());
         couponEntity.setQuantity(coupondto.getNumberOfUses());
         couponEntity.setExpirationDate(coupondto.getExpirationDate());
